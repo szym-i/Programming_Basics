@@ -2,15 +2,17 @@
 #include <time.h>
 #include <stdlib.h>
 
-void create_array(int t[], int n){ // creating array with random integers 1-10
-for (int i=0; i < n; i++){
+void create_array(int t[], int n) // creating array with random integers 1-10
+{
+	for (int i=0; i < n; i++){
                 int temp = (lrand48() % 10)+1;
                 t[i]=temp;
         }
 
 }
 
-void print_array(int t[], int n){ // printing array
+void print_array(int t[], int n) // printing array
+{
 	printf("[");
 	for (int i=0; i<n; i++){
 		printf(" %d",t[i]);
@@ -18,7 +20,8 @@ void print_array(int t[], int n){ // printing array
 	printf(" ]\n");
 }
 
-void reverse(int t[], int n){ // reversing array 
+void reverse(int t[], int n) // reversing array 
+{
 	int l = n/2; // number of swaps
 	for (int i = 0; i < l; i++){
 		int temp = t[i];
@@ -28,7 +31,8 @@ void reverse(int t[], int n){ // reversing array
 	}
 }
 
-void bubble_sort(int t[], int n){ // sorting array (bubble sort)
+void bubble_sort(int t[], int n) // sorting array (bubble sort)
+{
 	for (int i=0; i < n-1; i++){
 		for (int j = 0; j < n -i -1; j++){
 			if ( t[j] > t[j+1]){
@@ -42,7 +46,8 @@ void bubble_sort(int t[], int n){ // sorting array (bubble sort)
 	}
 }
 
-int one_two(int t1[], int n1, int t2[], int n2, int result[]){ // merging two arrays without duplicates
+int one_two(int t1[], int n1, int t2[], int n2, int result[]) // merging two arrays without duplicates
+{
 	int len=1; // result array index
 	result[0]=t1[0]; 
 	for ( int i=1; i < n1; i++){ // duplicate check for t1 elements 
@@ -77,7 +82,8 @@ int one_two(int t1[], int n1, int t2[], int n2, int result[]){ // merging two ar
 	return len;
 }
 
-int main(void){
+int main(void)
+{
 	srand48(time(NULL));
 	int n1;
 	int n2;

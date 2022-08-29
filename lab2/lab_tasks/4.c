@@ -1,9 +1,11 @@
 #include <stdio.h>
 
+// lab task
 
-int main(void){
+int main(void)
+{
 	int n=0;
-	printf("Wprowadź rozmiar działki n=");
+	printf("Enter size of property n=");
 	scanf("%d",&n);
 	int arr[n][n];
 	for(int i=0; i < n; i++){

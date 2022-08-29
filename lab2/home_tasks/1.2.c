@@ -3,7 +3,8 @@
 #include <stdlib.h>
 #include <math.h>
 
-void create_array(int t[], int n){ // creating array with random integers [-10,10]
+void create_array(int t[], int n) // creating array with random integers [-10,10]
+{
 	for (int i=0; i < n; i++){
                 int r = (lrand48() % 21)-10;
                 t[i]=r;
@@ -11,15 +12,17 @@ void create_array(int t[], int n){ // creating array with random integers [-10,1
 
 }
 
-void print_array(int t[], int n){ // printing array
-        printf("[");
+void print_array(int t[], int n) // printing array
+{
+	printf("[");
         for (int i=0; i<n; i++){
                 printf(" %d",t[i]);
         }
         printf(" ]\n");
 }
 
-void stats(int arr[],int n){ // calculate the percentage of occurrences of each number
+void stats(int arr[],int n) // calculate the percentage of occurrences of each number
+{
 	for(int i=-10; i < 11; i++){
 		float counter=0;
 		for(int j=0; j < n; j++){
@@ -31,7 +34,8 @@ void stats(int arr[],int n){ // calculate the percentage of occurrences of each 
 	}
 }
 
-int main(void){
+int main(void)
+{
 	srand48(time(NULL));
 	int n;
 	printf("Choose the size of array n=");

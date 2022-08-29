@@ -2,7 +2,8 @@
 #include <time.h>
 #include <stdlib.h>
 
-void create_2d_array(int arr [8][8]){ // create matrix with random numbers [0-1]
+void create_2d_array(int arr [8][8]) // create matrix with random numbers [0-1]
+{
 	for (int i=0; i < 8; i++){
 		for ( int j=0; j < 8; j++){
                 	int temp = (lrand48() % 2);
@@ -12,7 +13,8 @@ void create_2d_array(int arr [8][8]){ // create matrix with random numbers [0-1]
 
 }
 
-void print_2d_array(int arr[8][8]){ // printing matrix
+void print_2d_array(int arr[8][8]) // printing matrix
+{
 	for (int j=0; j < 8; j++){
         printf("[");
         	for (int i=0; i < 8; i++){
@@ -22,7 +24,8 @@ void print_2d_array(int arr[8][8]){ // printing matrix
 	}  
 }
 
-void sum_calculator(int arr[8][8]){ // calculate the sum of: diagonal (both), each column and all elements
+void sum_calculator(int arr[8][8]) // calculate the sum of: diagonal (both), each column and all elements
+{
 	int sum=0;
 	printf("Sum of each column:\n ");
 	for ( int i = 0; i < 8; i++){
@@ -44,7 +47,8 @@ void sum_calculator(int arr[8][8]){ // calculate the sum of: diagonal (both), ea
         printf("Second diagonal sum is %d \n",diagonal_sum2);
 }
 
-void multiplication(int arr1[8][8], int arr2[8][8]){ // matrix multiplication
+void multiplication(int arr1[8][8], int arr2[8][8]) // matrix multiplication
+{
 	int result[8][8];
 	for (int i=0; i < 8; i++){
 		for ( int j=0; j < 8; j++){
@@ -58,7 +62,8 @@ void multiplication(int arr1[8][8], int arr2[8][8]){ // matrix multiplication
 	print_2d_array(result);
 }
 
-int main(void){
+int main(void)
+{
 	srand48(time(NULL));
 	int arr1[8][8];
 	int arr2[8][8];
