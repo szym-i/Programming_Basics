@@ -42,7 +42,7 @@ int main()
         iloczyn = iloczyn * i;
         printf("\e[31m%d \e[0m", i);
     }
-    printf("\e[31mStart\n");
+    printf("\e[31mStart \n");
     printf("\e[31mWartość iloczynu:\e[0m %d\n", iloczyn);
 
     double a, b, c, d;
