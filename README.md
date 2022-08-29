@@ -6,6 +6,3 @@ My results:
 lab 2 | lab 3| lab 4 | lab 5 | lab 6
 :----:| :---:| :----:|:-----:|:-----:
 x     | x    | x     | x     | x 
-Compile codes with:
-gcc prog.c -o prog
-gcc prog.c -lm -o prog (from those with <math.h> module)    
