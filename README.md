@@ -5,4 +5,9 @@ Each laboratory, I could get six points, four from home tasks, and two which I c
 My results:
 lab 2 | lab 3| lab 4 | lab 5 | lab 6
 :----:| :---:| :----:|:-----:|:-----:
-x     | x    | x     | x     | x 
+4+1,5 | 4+1  | 4     | 4+1   | 4+1,8
+Comile codes in Linux Terminal with: \ 
+gcc prog.c -o prog \
+or \ 
+gcc prog.c -lm -o prog \
+(for those with <math.h> module)
