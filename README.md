@@ -9,4 +9,4 @@ lab 2 | lab 3| lab 4 | lab 5 | lab 6
 
 
 
-Compile codes in Linux Terminal with: gcc prog.c -o prog or gcc prog.c -lm -o prog (for those with <math.h> module)
+Compile codes in Linux Terminal with: **gcc prog.c -o prog** or **gcc prog.c -lm -o prog** (for those with <math.h> module)
