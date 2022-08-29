@@ -2,7 +2,8 @@
 #include <stdlib.h>
 #include <time.h>
 
-void print(int **arr, int m, int n){ //funkcja do printowania tablicy
+void print(int **arr, int m, int n) // print Matrix
+{
     for(int i = 0; i < n; i++){
 	printf("[");
         for(int j = 0; j < m; j++)
@@ -11,7 +12,8 @@ void print(int **arr, int m, int n){ //funkcja do printowania tablicy
     }
 }
 
-void randomize(int **arr, int m,int n){ //funkcja do wypełniania tablicy randomowymi wartościami
+void randomize(int **arr, int m,int n) // create Matrix with random integers [0,9]
+{
 	for(int i = 0; i < n; i++){
         	for(int j = 0; j < m; j++)
                         *(*(arr + i) +j) = lrand48() % 10;
@@ -21,18 +23,18 @@ void randomize(int **arr, int m,int n){ //funkcja do wypełniania tablicy random
 int main(void){
 	int m,n;
 	srand48(time(NULL));
-	printf("Stwórz tablicę mxn:\n");
-	printf("Podaj liczbę kolumn m=");
+	printf("Create Matrix (mxn) with random integers:\n");
+	printf("Enter number of columns m=");
 	scanf("%d",&m);
-	printf("Podaj liczbę wierszy n=");
+	printf("Enter number of rows n=");
         scanf("%d",&n);
-	int** arr = (int**)malloc(n * sizeof(int*));//zainicjowanie tablicy o rozmiarze n wierszów
-    	for(int i = 0; i < n; i++) //zainicjowanie n wierszów o rozmiarze m
+	int** arr = (int**)malloc(n * sizeof(int*)); // zainicjowanie tablicy o rozmiarze n wierszów
+    	for(int i = 0; i < n; i++) // zainicjowanie n wierszów o rozmiarze m
         	arr[i] = (int*)malloc(m * sizeof(int));
 	randomize(arr,m,n);
 	print(arr,m,n);
-	for(int i = 0; i < n; i++) //zwolnienie pamięci każdego z n wierszów
+	for(int i = 0; i < n; i++) // free memory for each of n rows
         	free(arr[i]);
-    	free(arr); //zwolnienie pamięci całej tablicy
+    	free(arr); // free memory
 	return 0;
 }
