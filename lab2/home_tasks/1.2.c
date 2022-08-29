@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <math.h>
 
-void create_array(int t[], int n){ //funkcja do towrzenia tablicy z losowymi liczbami z przedzialu [-10,10]
+void create_array(int t[], int n){ // creating array with random integers [-10,10]
 	for (int i=0; i < n; i++){
                 int r = (lrand48() % 21)-10;
                 t[i]=r;
@@ -11,7 +11,7 @@ void create_array(int t[], int n){ //funkcja do towrzenia tablicy z losowymi lic
 
 }
 
-void print_array(int t[], int n){ //funkcja do printowania tablicy
+void print_array(int t[], int n){ // printing array
         printf("[");
         for (int i=0; i<n; i++){
                 printf(" %d",t[i]);
@@ -19,27 +19,27 @@ void print_array(int t[], int n){ //funkcja do printowania tablicy
         printf(" ]\n");
 }
 
-void stats(int arr[],int n){ // funkcja do obliczenia statystyki wystąpień każdej z liczb
+void stats(int arr[],int n){ // calculate the percentage of occurrences of each number
 	for(int i=-10; i < 11; i++){
-		float licznik=0; // liczba wystąpień liczby
+		float counter=0;
 		for(int j=0; j < n; j++){
 			if ( i == arr[j]){
-				licznik++;
+				counter++;
 			}	
 		}
-		printf("Wartość %d wystąpiła %0.f razy (\033[0;31m%.2f%%\033[0m)\n", i ,licznik, 100*licznik/n);
+		printf("Number %d appeared %0.f times (\033[0;31m%.2f%%\033[0m)\n", i ,counter, 100*counter/n);
 	}
 }
 
 int main(void){
 	srand48(time(NULL));
 	int n;
-	printf("Wybierz długość tablicy n=");
+	printf("Choose the size of array n=");
 	scanf("%d",&n);
 	int arr[n];
 	create_array(arr,n);
 	print_array(arr,n);
-	printf("\033[0;35mWynik funkcji stats(arr,n):\033[0m\n");
+	printf("\033[0;35mResult of stats(arr,n):\033[0m\n");
 	stats(arr,n);
 }
 

@@ -2,7 +2,7 @@
 #include <time.h>
 #include <stdlib.h>
 
-void create_2d_array(int arr [8][8]){ // funkcja do zapelniania tablicy 2d randomowymi liczbami
+void create_2d_array(int arr [8][8]){ // create matrix with random numbers [0-1]
 	for (int i=0; i < 8; i++){
 		for ( int j=0; j < 8; j++){
                 	int temp = (lrand48() % 2);
@@ -12,7 +12,7 @@ void create_2d_array(int arr [8][8]){ // funkcja do zapelniania tablicy 2d rando
 
 }
 
-void print_2d_array(int arr[8][8]){ //funkcja do printowania tablicy 2d
+void print_2d_array(int arr[8][8]){ // printing matrix
 	for (int j=0; j < 8; j++){
         printf("[");
         	for (int i=0; i < 8; i++){
@@ -22,10 +22,9 @@ void print_2d_array(int arr[8][8]){ //funkcja do printowania tablicy 2d
 	}  
 }
 
-void sum_calculator(int arr[8][8]){ //kalkulator sumy po przekątnej, w każdej kolumnie i wszystkich elementów
+void sum_calculator(int arr[8][8]){ // calculate the sum of: diagonal (both), each column and all elements
 	int sum=0;
-	printf("Suma elementów poszczególnych kolumn:\n");
-	printf(" ");
+	printf("Sum of each column:\n ");
 	for ( int i = 0; i < 8; i++){
                 int each_column_sum=0;
                 for ( int j= 0; j < 8;j++){
@@ -34,18 +33,18 @@ void sum_calculator(int arr[8][8]){ //kalkulator sumy po przekątnej, w każdej 
                 printf(" %d", each_column_sum);
 		sum += each_column_sum;
         }
-	printf("\nSuma wszystkich elementow wynosi %d\n",sum);
+	printf("\nSum of all elements is %d\n",sum);
 	        int diagonal_sum1=0;
         int diagonal_sum2=0;
         for (int i = 0; i < 8;i++)
                 diagonal_sum1+=arr[i][i];
-        printf("Suma elementów po przekątnej wynosi %d \n",diagonal_sum1);
+        printf("Diagonal sum is %d \n",diagonal_sum1);
         for ( int i = 7; i >= 0; i--)
                 diagonal_sum2+=arr[i][7-i];
-        printf("Suma elementów po drugiej przekątnej wynosi %d \n",diagonal_sum2);
+        printf("Second diagonal sum is %d \n",diagonal_sum2);
 }
 
-void multiplication(int arr1[8][8], int arr2[8][8]){ // mnożenie macierzy (tablic)
+void multiplication(int arr1[8][8], int arr2[8][8]){ // matrix multiplication
 	int result[8][8];
 	for (int i=0; i < 8; i++){
 		for ( int j=0; j < 8; j++){
@@ -64,13 +63,13 @@ int main(void){
 	int arr1[8][8];
 	int arr2[8][8];
 	create_2d_array(arr1);
-	printf("\033[0;31mPierwsza tablica:\033[0m\n");
+	printf("\033[0;31mFirst matrix:\033[0m\n");
 	print_2d_array(arr1);
 	create_2d_array(arr2);
-	printf("\033[0;31mDruga tablica:\033[0m\n");
+	printf("\033[0;31mSecond matrix:\033[0m\n");
 	print_2d_array(arr2);
-	printf("\033[0;35mWynik działania funkcji sum_calculator(arr2):\033[0m\n");
+	printf("\033[0;35mResult of sum_calculator(arr2):\033[0m\n");
 	sum_calculator(arr2);
-	printf("\033[0;35mWynik funkcji multiplication(arr1,arr2):\033[0m\n");
+	printf("\033[0;35mResult of multiplication(arr1,arr2):\033[0m\n");
 	multiplication(arr1,arr2);
 }
