@@ -1,10 +1,12 @@
 #include <stdio.h>
 #include <math.h>
 
+// compile gcc zad3.c -lm -o zad3 (-lm for math module)
+
 int main(void){
         float a,b,c,delta;
         scanf("%f %f %f", &a, &b, &c);
-        printf("Rownanie (%.2f)x^2 + (%.2f)x + (%.2f) = 0 posiada rozwiazanie:\n", a, b, c);
+        printf("The equation (%.2f)x^2 + (%.2f)x + (%.2f) = 0 has a solution:\n", a, b, c);
 	delta = b*b - 4*a*c;
 	printf("Delta = %f\n",delta);
 	if ( delta > 0){
