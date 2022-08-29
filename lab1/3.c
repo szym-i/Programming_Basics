@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <math.h>
 
-// compile gcc zad3.c -lm -o zad3 (-lm for math module)
+// quadratic equation solution (with imaginary ones)
 
 int main(void){
         float a,b,c,delta;
