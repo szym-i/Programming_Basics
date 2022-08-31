@@ -8,7 +8,7 @@ char** getData(int len){
 	char *buffer = NULL;
 	(len) = 0;
 	
-	int l; //int
+	int l; // int
 	
 	while (1){
 		int r = getline(&buffer, &l, stdin);
@@ -16,7 +16,7 @@ char** getData(int len){
 		if (r == -1)
 			break;
 		
-		if (len > 2) // gdy wprowadzamy więcej niż 3 linijki, realokujemy pamięć
+		if (len > 2) // realloc memory if more than 3 lines are entered
 			a = realloc(a, (len + 1) * sizeof(char*));
 		
 		if (buffer[r - 1] != '\n')

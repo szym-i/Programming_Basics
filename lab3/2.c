@@ -73,28 +73,28 @@ char* compress(char* tekst){
 	result = (char*) malloc((strlen(tekst)*sizeof(char)));//rezerwujemy długość tekstu, bo jest skompresowana wersja będzie nie dłuższa od niego
 	int k=0;
 	for(int i=0; i < strlen(tekst); i++){
-		int licznik = 1;
+		int ctr = 1;
 		int ascii_num = tekst[i];	
 		char c = tekst[i];
-		if(( ascii_num != 41 ) && ( ascii_num != 40 ) && ( ascii_num != 37 )){//jeśli char nie jest (, % ani )
+		if(( ascii_num != 41 ) && ( ascii_num != 40 ) && ( ascii_num != 37 )){ // if char is not "(","%" and ")"
 			result[k++]=c;
 			for(int j = i + 1 ; j < strlen(tekst); j++){
                         	if(c == tekst[j]){
-                                	licznik++;
+                                	ctr++;
                         	}
                         	if(c != tekst[j]){
                                 	if(licznik > 4){
 						result[k++] = '(';
 						int zmienna=0;
 						int h=1;
-						while(h <= licznik){
+						while(h <= ctr){
 				                	zmienna++;
                 					h*=10;
         					}
-        					snprintf(&result[k++],zmienna+2,"%d",licznik);
+        					snprintf(&result[k++],zmienna+2,"%d",ctr);
 						k+=zmienna-1;
 						result[k++] = ')';
-                                        	i += licznik-1;
+                                        	i += ctr-1;
                                 	}
                                 	break;
                         	}
@@ -103,7 +103,7 @@ char* compress(char* tekst){
 		else{
 			for(int j = i + 1 ; j < strlen(tekst); j++){
                         	if ( c == tekst[j]){
-                                	licznik++;
+                                	ctr++;
                         	}
                         	if( c != tekst[j]){
 					result[k++]='%';
@@ -112,14 +112,14 @@ char* compress(char* tekst){
 					result[k++] = '(';
                                         int zmienna=0;
                                         int h=1;
-                                        while(h <= licznik){
+                                        while(h <= ctr){
                                         	zmienna++;
                                                 h*=10;
                                         }
-                                        snprintf(&result[k++],zmienna+2,"%d",licznik);
+                                        snprintf(&result[k++],zmienna+2,"%d",ctr);
                                         k+=zmienna-1;
                                         result[k++] = ')';
-                        		i += licznik-1;
+                        		i += ctr-1;
                                 	break;
                         	}
                 	}
@@ -148,7 +148,7 @@ char* decompress(char* tekst){
 					break;
 				}
 			}
-			int num=0; //liczba skompresowamnych znaków ASCII
+			int num=0; // number of compressed ASCII characters
 			zmienna=1;
 			while( rozmiar > 0){ //konwersja liczby znaków ze stringa do inta
 				num += zmienna *(tekst[i+rozmiar] - '0' );
@@ -163,13 +163,13 @@ char* decompress(char* tekst){
 			i+=index+2;
 		}
 		if( c == '%'){
-			if(tekst[i+2] == 8){ //  (
+			if(tekst[i+2] == 8){ // "("
 				c = '(';
 			}
-			if(tekst[i+2] == 5){ //  %
+			if(tekst[i+2] == 5){ //  "%"
                         	c = '%';
                         }
-                        if(tekst[i+2] == 9){ //  )
+                        if(tekst[i+2] == 9){ //  ")"
                         	c = ')';
                         }
 			int rozmiar=0;
@@ -180,9 +180,9 @@ char* decompress(char* tekst){
                                         break;
 			}
 			int skip=rozmiar;
-			int num=0; //liczba skompresowamnych znaków ASCII
+			int num=0; // number of compressed ASCII characters
                         zmienna=1;
-                        while( rozmiar > 0){ //konwersja liczby znaków ze stringa do inta
+                        while( rozmiar > 0){ // konwersja liczby znaków ze stringa do inta
                                 num += zmienna * (tekst[i+3+rozmiar] - '0' );
                                 rozmiar--;
                                 zmienna*=10;

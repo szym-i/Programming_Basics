@@ -1,15 +1,17 @@
 #include <stdio.h>
 #include <string.h>
 
-char* getEncryptedLine(char* string){
+char* getEncryptedLine(char* string) // Caesar Cipher, where shift/key = len of first word in input
+{
 	int s=0;
 	for(int i=0; i < strlen(string); i++){
 		if((string[i] != ' ') && (string[i] != '\0') && (string[i] != '\n')){
 			s++;
 		}
-		else
+		else{
 			if ( s > 0)
 				break;
+		}
 	}
 	char c;
 	int x;
@@ -19,12 +21,12 @@ char* getEncryptedLine(char* string){
 			d = string[i];
 			c = string[i];
 			x = c + s % 26;// % 26 aby dla przesunięcia większego niż 25 działało 
-			if (( d > 64 ) && ( d < 91)){  // dla dużych liter
+			if (( d > 64 ) && ( d < 91)){  // for upper case letters
 				if ( x > 90)
 					x = x - 26;
 				string[i]=x;	
 			}
-			if (( d > 96) && ( d < 123)){ // dla małych liter
+			if (( d > 96) && ( d < 123)){ // for lower case letters
 				if ( x > 122)
 					x = x - 26;
 				string[i]=x;
@@ -34,7 +36,8 @@ char* getEncryptedLine(char* string){
 	return string;	
 }
 
-void* main(void){
+void* main(void)
+{
 	char string[100];
 	do{
 		if (fgets(string, sizeof(string), stdin) != NULL ){

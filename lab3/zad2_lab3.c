@@ -7,17 +7,17 @@
 #define max_line_len 200
 
 char** getData(int* line_count){
-    char** input = calloc(3, sizeof(char*));// alokacja pamięci na tablicę wskaźników
-    char* line = NULL;// domyślnie wartość wiersza to null 
+    char** input = calloc(3, sizeof(char*)); // alokacja pamięci na tablicę wskaźników
+    char* line = NULL; // by default
     (*line_count) = 0;
     size_t size;
 
-    for (;;){// aka while true
+    for (;;){ // aka while true
         int length = getline(&line, &size, stdin);
-        if (length == -1){// przerwanie pętli na końcu inputu
+        if (length == -1){ // break at the end of input
             break;
         }
-        if (*line_count > 2){// jeśli jest więcej niż 3 wiersze, realokacja pamięci
+        if (*line_count > 2){ // jeśli jest więcej niż 3 wiersze, realokacja pamięci
 	    char** new_input = realloc(input, (*line_count + 1) * sizeof(char*));// bezpieczna realokacja
 
             if (new_input != NULL){
@@ -81,11 +81,11 @@ char* decompress(char** tekst, int len){// funkcja przyjmuje char ** oraz jego d
 				j+= skip+2;
 			}
 			if (c == '%'){
-			 	if (tekst[i][j+2] == 8) //  (
+			 	if (tekst[i][j+2] == 8) //  "("
 					c = '(';
-				if (tekst[i][j+2] == 5) //  %
+				if (tekst[i][j+2] == 5) //  "%"
                         		c = '%';
-                        	if (tekst[i][j+2] == 9) // )
+                        	if (tekst[i][j+2] == 9) // ")"
                         		c = ')';
 				int rozmiar=0;
                         	for (int h=1; j+h+3 < strlen(tekst[i]); h++){// zliczamy rząd wielkości liczby 
