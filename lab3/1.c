@@ -20,7 +20,7 @@ char* getEncryptedLine(char* string) // Caesar Cipher, where shift/key = len of 
 		if((string[i] != ' ') && (string[i] != '\0') && (string[i] != '\n')){
 			d = string[i];
 			c = string[i];
-			x = c + s % 26;// % 26 aby dla przesunięcia większego niż 25 działało 
+			x = c + s % 26;// % 26 in case shift is over 25
 			if (( d > 64 ) && ( d < 91)){  // for upper case letters
 				if ( x > 90)
 					x = x - 26;
