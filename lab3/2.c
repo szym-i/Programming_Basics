@@ -62,10 +62,10 @@ char** getData(int* line_count)
 }
 
 char* getHexAscii(char znak){
-	char* ch;
-	ch = (char*) malloc(1*sizeof(char));
-	snprintf(ch,3,"%X",znak); // %X to wartość HEX chara
-	return ch;
+	char* hex;
+	hex = (char*) malloc(1*sizeof(char));
+	snprintf(hex,3,"%X",znak); // %X for HEX char value
+	return hex;
 }
 
 char* compress(char* tekst){
