@@ -1,4 +1,4 @@
-#include "CUnit/Basic.h"
+#include <CUnit.h>
 #include "getEncryptedLine.c"
 
 void getEncryptedLine_test(){

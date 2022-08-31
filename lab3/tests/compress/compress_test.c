@@ -27,7 +27,8 @@ void compress_test(){
 	free(test);
 }
 
-int main(){
+int main()
+{
 	CU_pSuite pSuite = NULL;
 
 	if (CUE_SUCCESS != CU_initialize_registry())
