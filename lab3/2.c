@@ -69,10 +69,10 @@ char* getHexAscii(char c)
 	return hex;
 }
 
-char* compress(char* text)
+char* compress(char* text) // compress "(", "%", ")" with ASCII values, and compress more than 4 same characters ( aaaaa = a(5) ) 
 {
 	char* result;
-	result = (char*) malloc((strlen(text)*sizeof(char)));//rezerwujemy długość tekstu, bo jest skompresowana wersja będzie nie dłuższa od niego
+	result = (char*) malloc((strlen(text)*sizeof(char)));
 	int k=0;
 	for(int i=0; i < strlen(text); i++){
 		int ctr = 1;
@@ -131,7 +131,8 @@ char* compress(char* text)
 	return result;	
 }
 
-char* decompress(char* text){
+char* decompress(char* text) // just decompress text
+{
 	char* result;
 	result = (char*) malloc((150*sizeof(char)));
 	int k=0;
@@ -206,7 +207,6 @@ char* decompress(char* text){
 		}
 
 	}
-	//printf("%s",result);
 	return result;
 }
 
@@ -218,9 +218,8 @@ int main(void)
 	printf("Enter char:");
 	scanf("%c",&c);
 	char* d = getHexAscii(c);
-	printf("%s",d);
-	*/
-	printf("\033[5;36mEnter the string:\033[0m\n");
+	printf("%s\n",d);*/
+	printf("\033[7;36mEnter the string:\033[0m\n");
 	fgets(str,150,stdin);
 	char* compressed = compress(str);
 	printf("\033[2;32mResult of compress(string):\033[0m\n%s",compressed);
