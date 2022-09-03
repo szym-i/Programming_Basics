@@ -20,7 +20,8 @@ void randomize(int **arr, int m,int n) // create Matrix with random integers [0,
         }
 }
 
-int main(void){
+int main(void)
+{
 	int m,n;
 	srand48(time(NULL));
 	printf("Create Matrix (mxn) with random integers:\n");
