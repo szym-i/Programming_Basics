@@ -1,8 +1,3 @@
-/*
-Aby program się kompilował:
-- Odkomentuj dyrektywy '#include' znajdujące się w liniach 7-11
-- Zastąp każde wystąpienie 'plikNagłówkowyNr{N}.h' nazwą konkretnego, wymaganego pliku nagłówkowego
-*/
  #include <stdio.h>
  #include <stdlib.h>
  #include <complex.h>
