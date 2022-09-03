@@ -30,7 +30,8 @@ char** getData(int len){
 	
 	return a;
 }
-int main(void){
+int main(void)
+{
 	char** a = getData(3);
 	int i=0;
 	do{
