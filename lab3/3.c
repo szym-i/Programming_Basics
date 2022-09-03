@@ -3,7 +3,8 @@
 #include <string.h>
 
 
-char** getData(int len){
+char** getData(int len)
+{
 	char** a = calloc(3, sizeof(char*));
 	char *buffer = NULL;
 	(len) = 0;
