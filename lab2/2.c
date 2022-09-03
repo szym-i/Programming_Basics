@@ -2,7 +2,7 @@
 #include <time.h>
 #include <stdlib.h>
 
-void create_2d_array(int arr [8][8]) // create matrix with random numbers [0-1]
+void create_2d_array(int arr [8][8]) // create matrix with random numbers [0-1] (for easy calculations check)
 {
 	for (int i=0; i < 8; i++){
 		for ( int j=0; j < 8; j++){
