@@ -36,7 +36,7 @@ void check(int *arr, int n) // check if Matrix is Lower Triangular
 int main(void)
 {
     int n;
-    printf("Enter size of Square Matrix nxn, n=");
+    printf("Enter size of your Square Matrix nxn, n=");
     scanf("%d", &n);
     int size = n * n;
     int *arr = malloc(size * sizeof(int));
