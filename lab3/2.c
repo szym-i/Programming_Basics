@@ -175,19 +175,19 @@ char* decompress(char* text) // just decompress text
                         if(text[i+2] == 9){ //  ")"
                         	c = ')';
                         }
-			int rozmiar=0;
+			int size=0;
                         for(int j=1; i + j + 3< strlen(text);j++){
                                 if( text[i+j+3] != ')' )
-                                        rozmiar++;
+                                        size++;
                                 else
                                         break;
 			}
-			int skip=rozmiar;
+			int skip=size;
 			int num=0; // number of compressed ASCII characters
                         zmienna=1;
-                        while( rozmiar > 0){ // konwersja liczby znaków ze stringa do inta
-                                num += zmienna * (text[i+3+rozmiar] - '0' );
-                                rozmiar--;
+                        while( size > 0){ // konwersja liczby znaków ze stringa do inta
+                                num += zmienna * (text[i+3+size] - '0' );
+                                size--;
                                 zmienna*=10;
                         }
 			while (num > 0){
