@@ -30,7 +30,7 @@ char** getData(int* line_count)
                 return NULL;
             }
         }
-        if (line[length - 1] != '\n'){// wczytywanie do końca linii
+        if (line[length - 1] != '\n'){ // read until end of line
             length++;
         }
         line[length - 1] = 0;
@@ -41,10 +41,11 @@ char** getData(int* line_count)
     return input;
 }
 
-char* getHexAscii(char znak){
+char* getHexAscii(char znak)
+{
 	char* result;
 	result = (char*) malloc(1*sizeof(char));
-	snprintf(result,3,"%X",znak); // %X to wartość HEX chara
+	snprintf(result,3,"%X",znak); // %X is HEX char value
 	return result;
 }                            
 
@@ -121,7 +122,8 @@ char* decompress(char** tekst, int len){// funkcja przyjmuje char ** oraz jego d
 	return result;
 }
 
-int int2arr(char* arr, int l){
+int int2arr(char* arr, int l)
+{
 	int h = l;
 	int len;
 	for (len = 0; h != 0; len++)
@@ -133,7 +135,8 @@ int int2arr(char* arr, int l){
 	return len;
 }
 
-char* compress(char** a, int len){
+char* compress(char** a, int len)
+{
 	char* result;
 	result = malloc(len * max_line_len * sizeof(char));
 	int k = 0; // result index
@@ -171,7 +174,8 @@ char* compress(char** a, int len){
 }
 
 
-int main(int argc, char* argv[]){
+int main(int argc, char* argv[]) // reading until ctrl+d
+{
     int mode = 0; // default mode - compress
     if ((argc > 1) && (!strncmp(argv[1], "--decompress",12))) // if used with --decompress, changes mode
         mode = 1;
