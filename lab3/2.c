@@ -61,29 +61,31 @@ char** getData(int* line_count)
     return master_array;
 }
 
-char* getHexAscii(char znak){
+char* getHexAscii(char c)
+{
 	char* hex;
 	hex = (char*) malloc(1*sizeof(char));
-	snprintf(hex,3,"%X",znak); // %X for HEX char value
+	snprintf(hex,3,"%X",c); // %X for HEX char value
 	return hex;
 }
 
-char* compress(char* tekst){
+char* compress(char* text)
+{
 	char* result;
-	result = (char*) malloc((strlen(tekst)*sizeof(char)));//rezerwujemy długość tekstu, bo jest skompresowana wersja będzie nie dłuższa od niego
+	result = (char*) malloc((strlen(text)*sizeof(char)));//rezerwujemy długość tekstu, bo jest skompresowana wersja będzie nie dłuższa od niego
 	int k=0;
-	for(int i=0; i < strlen(tekst); i++){
+	for(int i=0; i < strlen(text); i++){
 		int ctr = 1;
-		int ascii_num = tekst[i];	
-		char c = tekst[i];
+		int ascii_num = text[i];	
+		char c = text[i];
 		if(( ascii_num != 41 ) && ( ascii_num != 40 ) && ( ascii_num != 37 )){ // if char is not "(","%" and ")"
 			result[k++]=c;
-			for(int j = i + 1 ; j < strlen(tekst); j++){
-                        	if(c == tekst[j]){
+			for(int j = i + 1 ; j < strlen(text); j++){
+                        	if(c == text[j]){
                                 	ctr++;
                         	}
-                        	if(c != tekst[j]){
-                                	if(licznik > 4){
+                        	if(c != text[j]){
+                                	if(ctr > 4){
 						result[k++] = '(';
 						int zmienna=0;
 						int h=1;
@@ -101,11 +103,11 @@ char* compress(char* tekst){
                 	}
 		}
 		else{
-			for(int j = i + 1 ; j < strlen(tekst); j++){
-                        	if ( c == tekst[j]){
+			for(int j = i + 1 ; j < strlen(text); j++){
+                        	if ( c == text[j]){
                                 	ctr++;
                         	}
-                        	if( c != tekst[j]){
+                        	if( c != text[j]){
 					result[k++]='%';
 					snprintf(&result[k++],3,"%X",c);
 					k++;
@@ -129,19 +131,19 @@ char* compress(char* tekst){
 	return result;	
 }
 
-char* decompress(char* tekst){
+char* decompress(char* text){
 	char* result;
 	result = (char*) malloc((150*sizeof(char)));
 	int k=0;
 	int zmienna;
-	for(int i=0; i < strlen(tekst); i++){
-		char c = tekst[i];
+	for(int i=0; i < strlen(text); i++){
+		char c = text[i];
 		if(( c != '%' ) && ( c != '(' ) && (c != ')'))
-			result[k++]=tekst[i];
+			result[k++]=text[i];
 		if( c == '(' ){
 			int rozmiar=0;
-			for(int j=1; i + j < strlen(tekst);j++){
-				if( tekst[i+j] != ')' ){
+			for(int j=1; i + j < strlen(text);j++){
+				if( text[i+j] != ')' ){
 					rozmiar++;
 				}
 				else{
@@ -151,30 +153,30 @@ char* decompress(char* tekst){
 			int num=0; // number of compressed ASCII characters
 			zmienna=1;
 			while( rozmiar > 0){ //konwersja liczby znaków ze stringa do inta
-				num += zmienna *(tekst[i+rozmiar] - '0' );
+				num += zmienna *(text[i+rozmiar] - '0' );
 				rozmiar--;
 				zmienna*=10;
 			}
 			int index=rozmiar;
 			while (num > 1){
-				result[k++]=tekst[i-1];
+				result[k++]=text[i-1];
 				num--;
 			}
 			i+=index+2;
 		}
 		if( c == '%'){
-			if(tekst[i+2] == 8){ // "("
+			if(text[i+2] == 8){ // "("
 				c = '(';
 			}
-			if(tekst[i+2] == 5){ //  "%"
+			if(text[i+2] == 5){ //  "%"
                         	c = '%';
                         }
-                        if(tekst[i+2] == 9){ //  ")"
+                        if(text[i+2] == 9){ //  ")"
                         	c = ')';
                         }
 			int rozmiar=0;
-                        for(int j=1; i + j + 3< strlen(tekst);j++){
-                                if( tekst[i+j+3] != ')' )
+                        for(int j=1; i + j + 3< strlen(text);j++){
+                                if( text[i+j+3] != ')' )
                                         rozmiar++;
                                 else
                                         break;
@@ -183,18 +185,18 @@ char* decompress(char* tekst){
 			int num=0; // number of compressed ASCII characters
                         zmienna=1;
                         while( rozmiar > 0){ // konwersja liczby znaków ze stringa do inta
-                                num += zmienna * (tekst[i+3+rozmiar] - '0' );
+                                num += zmienna * (text[i+3+rozmiar] - '0' );
                                 rozmiar--;
                                 zmienna*=10;
                         }
 			while (num > 0){
-		                if(tekst[i+2] == '8'){ //  (
+		                if(text[i+2] == '8'){ //  (
                                 	result[k++] = '(';
                         	}
-                        	if(tekst[i+2] == '5'){ //  %
+                        	if(text[i+2] == '5'){ //  %
                                 	result[k++] = '%';
                         	}
-                        	if(tekst[i+2] == '9'){ //  )
+                        	if(text[i+2] == '9'){ //  )
                                 	result[k++] = ')';
                         	}
                                 num--;
@@ -208,7 +210,8 @@ char* decompress(char* tekst){
 	return result;
 }
 
-int main(void){
+int main(void)
+{
 	char* str;
         str = (char*) malloc(150*sizeof(char)); 
 	/*char c;
@@ -217,46 +220,10 @@ int main(void){
 	char* d = getHexAscii(c);
 	printf("%s",d);
 	*/
-	printf("Enter the string:\n");
+	printf("\033[5;36mEnter the string:\033[0m\n");
 	fgets(str,150,stdin);
 	char* compressed = compress(str);
-	printf("%s",compressed);
+	printf("\033[2;32mResult of compress(string):\033[0m\n%s",compressed);
 	compressed = decompress(compressed);
-	printf("%s",compressed);
+	printf("\033[2;33mResult of decompress(compressed_string):\033[0m\n%s",compressed);
 }
-//int main(int argc, char* argv[]){
-    // Default mode is 0 — compress
-    // ----------------------------
-    /*int mode = 0;
-
-    // If provided argument is --decompress, set mode to decompression
-    // ---------------------------------------------------------------
-    if (argc > 1)
-    {
-        if (!strncmp(argv[1], "--decompress", 12))
-        {
-            mode = 1;
-        }
-    }
-
-    // Compress/decompress up to len
-    // -----------------------------
-    int len;
-    char** input = getData(&len);
-    char* output;
-
-    if (mode == 0)
-    {
-        output = compress(input, len);
-    }
-    else
-    {
-        output = decompress(input, len);
-    }
-
-    printf("\n\n%s", output);
-    free(input);
-    free(output);*/
-    //printf("%s",compress("aaaaaaaa"));
-
-//}
