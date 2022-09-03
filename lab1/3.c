@@ -1,9 +1,8 @@
 #include <stdio.h>
 #include <math.h>
 
-// quadratic equation solution (with imaginary ones)
-
-int main(void){
+int main(void)
+{
         float a,b,c,delta;
         scanf("%f %f %f", &a, &b, &c);
         printf("The equation (%.2f)x^2 + (%.2f)x + (%.2f) = 0 has a solution:\n", a, b, c);
