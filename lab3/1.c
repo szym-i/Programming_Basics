@@ -14,8 +14,7 @@ char* getEncryptedLine(char* string) // Caesar Cipher, where shift/key = len of 
 		}
 	}
 	char c;
-	int x;
-	int d;
+	int x,d;
 	for(int i = 0; i < strlen(string); i++){
 		if((string[i] != ' ') && (string[i] != '\0') && (string[i] != '\n')){
 			d = string[i];
