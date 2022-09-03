@@ -21,7 +21,7 @@ void print_array(int t[], int n) // printing array
         printf(" ]\n");
 }
 
-void stats(int arr[],int n) // calculate the percentage of occurrences of each number
+void stats(int arr[],int n) // calculate the percentage of occurrences of each number [-10,10]
 {
 	for(int i=-10; i < 11; i++){
 		float counter=0;
