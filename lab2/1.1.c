@@ -63,7 +63,7 @@ int one_two(int t1[], int n1, int t2[], int n2, int result[]) // merging two arr
                 	len++;
         	}
 	}
-	for ( int i=0; i < n2; i++){ // same for  t2
+	for ( int i=0; i < n2; i++){ // same for t2
                 int z=0;
                 for (int j=0; j < len; j++){
                         if ( t2[i] == result[j] ){
