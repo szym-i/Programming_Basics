@@ -6,7 +6,8 @@
 #include <string.h>
 #define max_line_len 200
 
-char** getData(int* line_count){
+char** getData(int* line_count)
+{
     char** input = calloc(3, sizeof(char*)); // alokacja pamięci na tablicę wskaźników
     char* line = NULL; // by default
     (*line_count) = 0;
@@ -17,8 +18,8 @@ char** getData(int* line_count){
         if (length == -1){ // break at the end of input
             break;
         }
-        if (*line_count > 2){ // jeśli jest więcej niż 3 wiersze, realokacja pamięci
-	    char** new_input = realloc(input, (*line_count + 1) * sizeof(char*));// bezpieczna realokacja
+        if (*line_count > 2){ // if more than 3 lines, realloc mem
+	    char** new_input = realloc(input, (*line_count + 1) * sizeof(char*)); // safe realloc
 
             if (new_input != NULL){
                 input = new_input;
@@ -87,19 +88,19 @@ char* decompress(char** tekst, int len){// funkcja przyjmuje char ** oraz jego d
                         		c = '%';
                         	if (tekst[i][j+2] == 9) // ")"
                         		c = ')';
-				int rozmiar=0;
+				int size=0;
                         	for (int h=1; j+h+3 < strlen(tekst[i]); h++){// zliczamy rząd wielkości liczby 
                                 	if( tekst[i][j+h+3] != ')' )
-                                        	rozmiar++;
+                                        	size++;
                                 	else
                                         	break;
 				}
-				int skip=rozmiar;// kopia rozmiaru liczby skompresowanych znaków, aby ją później dodać do j
+				int skip=size;// kopia rozmiaru liczby skompresowanych znaków, aby ją później dodać do j
 				int licznik=0;// liczba skompresowamnych znaków ASCII
                         	int pozycja=1;// pozycja dziesiętna
-                        	while (rozmiar > 0){ // zczytujemy i konwertujemy liczbę skompresowanych znaków do inta
-                                	licznik += pozycja * (tekst[i][j+3+rozmiar] - '0');// mnożymy cyfrę razy jej miejsce dziesiętne, zaczynając od liczby jedności
-                                	rozmiar--;
+                        	while (size > 0){ // zczytujemy i konwertujemy liczbę skompresowanych znaków do inta
+                                	licznik += pozycja * (tekst[i][j+3+size] - '0');// mnożymy cyfrę razy jej miejsce dziesiętne, zaczynając od liczby jedności
+                                	size--;
                                 	pozycja*=10;
                         	}
 				while (licznik > 0){// wpisujemy tyle znaków specjalnych ile było podane
@@ -114,9 +115,9 @@ char* decompress(char** tekst, int len){// funkcja przyjmuje char ** oraz jego d
                         	j+=skip+4; // skip + 4 ( pozostałe 4 znaki do XX( ) ) 
 			}			
 		}
-		result[k++]='\n';// na końcu każdej linii wpisujemy \n
+		result[k++]='\n'; // "\n" at the end of each line
 	}
-	result[k-1]='\0';// na ostatnim miejscu wpisujemy null byte
+	result[k-1]='\0'; // null byte at the end
 	return result;
 }
 
@@ -135,7 +136,7 @@ int int2arr(char* arr, int l){
 char* compress(char** a, int len){
 	char* result;
 	result = malloc(len * max_line_len * sizeof(char));
-	int k = 0;// indeks result
+	int k = 0; // result index
 	for (int i = 0; i < len; i++){
 		int j = 0, licznik = 1;
 		do{
@@ -155,7 +156,7 @@ char* compress(char** a, int len){
 					snprintf(&result[k++],3,"%X",c);
 					k++;
 				}
-				else// jeśli jest 'zwyczajnym znakiem' po prostu go wpisujemy
+				else // if any other character
 					result[k++] = c;
 				result[k++] = '(';
 				k += int2arr(&result[k],licznik);// wpisujemy ilość wystąpień w result oraz zwiększamy indeks l o tyle ile miejsca zajmuje ilość wystąpień
@@ -165,23 +166,23 @@ char* compress(char** a, int len){
 		}while (a[i][j] != 0);
 		result[k++] = '\n';
 	}
-	result[k-1]='\0';//
+	result[k-1]='\0';
 	return result;
 }
 
 
 int main(int argc, char* argv[]){
-    int mode = 0;// domyślny tryb działania - compress
-    if ((argc > 1) && (!strncmp(argv[1], "--decompress",12)))// jeśli wprowadzony argument to --decompress, zmienia tryb
+    int mode = 0; // default mode - compress
+    if ((argc > 1) && (!strncmp(argv[1], "--decompress",12))) // if used with --decompress, changes mode
         mode = 1;
-    int len;// ilość wierszów struktury
-    char** input = getData(&len);// pobieranie inputu & ilości wierszów
+    int len;
+    char** input = getData(&len); // get input and input len
     char* result;
-    if (mode == 0){// compress
+    if (mode == 0){ // compress mode
         result = compress(input, len);
 	printf("\nThe result of compression:\n");
     }
-    else {// decompress
+    else { // decompress mode
 	printf("\nThe result of decompression:\n");
 	result=decompress(input,len);
     }
