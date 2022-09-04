@@ -3,11 +3,13 @@
 #include <string.h>
 #include <time.h>
 
-void generate(char* filename, int len, int mode){
+void generate(char* filename, int len, int mode)
+{
 	printf("Wybrano funkcje generate\n");
 }
 
-void sort(char* filename){
+void sort(char* filename)
+{
 	printf("Wybrano funkcje sort\n");
 }
 
