@@ -2,7 +2,8 @@
 #include <stdlib.h>
 #include <time.h>
 
-void create(int rows, int columns, char* filename){
+void create(int rows, int columns, char* filename) // create random NxM Matrix and write it into file
+{
 	FILE* fp;
 	char* val=malloc(2*sizeof(char));
         fp = fopen(filename,"w");
@@ -19,9 +20,10 @@ void create(int rows, int columns, char* filename){
         fclose(fp);
 }
 
-int main(int argc, char* argv[]){
+int main(int argc, char* argv[])
+{
 	if (argc != 3 ){
-		printf("Wprowadź dokładnie 2 argumenty! (min oraz max)");
+		printf("Enter exactly 2 arguments! (min and max)");
 		return 1;
 	}
 	srand48(time(NULL));
@@ -30,9 +32,9 @@ int main(int argc, char* argv[]){
 	int a = lrand48() %(max - min) + min;
 	int b = lrand48() %(max - min) + min;
 	int c = lrand48() %(max - min) + min;
-	printf("Stworzyłem macierze o wymiarach: %d %d %d\n",b,c,a);
-	create(b,a,"MacierzA.txt");
-	create(a,c,"MacierzB.txt");
+	printf("I created Matrices of sizes: %d %d %d\n",b,c,a);
+	create(b,a,"MatrixA.txt");
+	create(a,c,"MatrixB.txt");
 	
 
 	
