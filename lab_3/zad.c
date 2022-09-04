@@ -91,7 +91,7 @@ void find_comments(int *line_comment_counter, int *block_comment_counter)
 	int l=0;
 	int b=0;
 }
-/*******************************************************/
+/******************************************************/
 int main(void)
 {
     int to_do;
