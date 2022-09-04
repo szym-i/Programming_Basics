@@ -4,30 +4,32 @@
 #include <string.h>
 
 
-void list(int n, int type, char* filename){
+void list(int n, int type, char* filename)
+{
 	FILE *fp = fopen(filename, "rb"); // use "rb" if you're opening non-text files,
 	int c;
 	int i=0;
-	if (type == 1){// dla char
-		while(fread(&c, 1, 1, fp) && (i++ < n))// n elementów, lub max liczbę elementów (aby nie wypisywać ostatniego wyrazu niepotrzebnie dużo razy)
+	if (type == 1){ // char mode
+		while(fread(&c, 1, 1, fp) && (i++ < n)) // n elementów, lub max liczbę elementów (aby nie wypisywać ostatniego wyrazu niepotrzebnie dużo razy)
 			printf("%c",c);
 	}
-	else{// dla int
+	else{ // int mode
 		while(fread(&c, sizeof(int), 1, fp) && (i++ < n))
 			printf("%i\n", c);
 	}
 	fclose(fp);
 }
 
-void generate(int n, int type, char* filename) {
+void generate(int n, int type, char* filename)
+{
 	FILE *fp = fopen(filename, "wb");
 	int c;
 	for (int i = 0; i < n; i++){
-		if (type == 1){// dla char
+		if (type == 1){ // char mode
 			c = ((rand() - 33) % 94) + 33;
 			fwrite(&c, 1, 1, fp);
 		}
-		else{// dla int
+		else{ // int mode
 			c = rand();
 			fwrite(&c, sizeof(int), 1, fp);
 		}
@@ -35,22 +37,25 @@ void generate(int n, int type, char* filename) {
 	fclose(fp);
 }
 
-int get(FILE *fp, int index, int n){
+int get(FILE *fp, int index, int n)
+{
 	int c;
-	fseek(fp, n * index, SEEK_SET);// SEEK_SET – It moves file pointer position to the beginning of the file.
+	fseek(fp, n * index, SEEK_SET); // SEEK_SET – It moves file pointer position to the beginning of the file.
 	fread(&c, n, 1, fp);
 	return c;
 }
 
-void set(FILE *fp, int index, int n, int value){
+void set(FILE *fp, int index, int n, int value)
+{
 	fseek(fp, n * index, SEEK_SET);
 	fwrite(&value, n, 1, fp);
 }
 
-void sort(int n, int type, char* filename){
-	FILE* fp = fopen(filename, "rb+");// In r+ mode you can seek, read, and write.
-	int s = type ? 1 : sizeof(int);// If Condition is true ? then value X : otherwise value Y
-	for (int i = 0; i < n; i++){// przejście po wszystkich znakach/wartościach
+void sort(int n, int type, char* filename)
+{
+	FILE* fp = fopen(filename, "rb+"); // In r+ mode you can seek, read, and write.
+	int s = type ? 1 : sizeof(int); // If Condition is true ? then value X : otherwise value Y
+	for (int i = 0; i < n; i++){ // przejście po wszystkich znakach/wartościach
 		int min = get(fp,i,s);
 		int iv = min;
 		int imin = i;
@@ -69,14 +74,15 @@ void sort(int n, int type, char* filename){
 	fclose(fp);
 }
 
-int main(int argc, char** argv){
+int main(int argc, char** argv)
+{
 	srand(time(NULL));
-	if (argc != 5){// program przyjmie dokładnie 4 argumenty
-		printf("[plik] [liczba elementów] [char(c)/int(i)] [generate(g)/list(l)/sort(s)]\n");
+	if (argc != 5){ // accept exact 4 arguments
+		printf("[file] [number of elements] [char(c)/int(i)] [generate(g)/list(l)/sort(s)]\n");
 		return 1;
 	}
 	int tryb;
-	switch (argv[3][0]){// działa zarówno dla dłuższych i krótszych wersji
+	switch (argv[3][0]){ // działa zarówno dla dłuższych i krótszych wersji
 		case 'i':
 			tryb = 0;
 			break;
@@ -86,11 +92,11 @@ int main(int argc, char** argv){
 			break;
 			
 		default:
-			printf("Źle wybrałeś typ danych.\n");
+			printf("Wrong data type.\n");
 			return 1;
 	}
-	int n = atoi(argv[2]);// konwersja z char* do inta
-	switch (argv[4][0]){// tak samo jak powyżej
+	int n = atoi(argv[2]); // char* to int conversion
+	switch (argv[4][0]){ // tak samo jak powyżej
 		case 'g':
 			generate(n, tryb, argv[1]);
 			break;
