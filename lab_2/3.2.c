@@ -29,7 +29,7 @@ int main(void)
 	scanf("%d",&m);
 	printf("Enter number of rows n=");
         scanf("%d",&n);
-	int** arr = (int**)malloc(n * sizeof(int*)); // zainicjowanie tablicy o rozmiarze n wierszów
+	int** arr = (int**)malloc(n * sizeof(int*)); // malloc n-sized array
     	for(int i = 0; i < n; i++) // zainicjowanie n wierszów o rozmiarze m
         	arr[i] = (int*)malloc(m * sizeof(int));
 	randomize(arr,m,n);
