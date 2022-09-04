@@ -4,7 +4,7 @@
 #include <string.h>
 
 
-void list(int n, int type, char* filename)
+void list(int n, int type, char* filename) // print binary file 
 {
 	FILE *fp = fopen(filename, "rb"); // use "rb" if you're opening non-text files,
 	int c;
@@ -20,7 +20,7 @@ void list(int n, int type, char* filename)
 	fclose(fp);
 }
 
-void generate(int n, int type, char* filename)
+void generate(int n, int type, char* filename) // write binary file with n random chars/ints
 {
 	FILE *fp = fopen(filename, "wb");
 	int c;
@@ -51,7 +51,7 @@ void set(FILE *fp, int index, int n, int value)
 	fwrite(&value, n, 1, fp);
 }
 
-void sort(int n, int type, char* filename)
+void sort(int n, int type, char* filename) // sort binary file 
 {
 	FILE* fp = fopen(filename, "rb+"); // In r+ mode you can seek, read, and write.
 	int s = type ? 1 : sizeof(int); // If Condition is true ? then value X : otherwise value Y
@@ -77,18 +77,18 @@ void sort(int n, int type, char* filename)
 int main(int argc, char** argv)
 {
 	srand(time(NULL));
-	if (argc != 5){ // accept exact 4 arguments
-		printf("[file] [number of elements] [char(c)/int(i)] [generate(g)/list(l)/sort(s)]\n");
+	if (argc != 5){ // accept exactly 4 arguments
+		printf("[file.txt] [number of elements] [char(c)/int(i)] [generate(g)/list(l)/sort(s)]\n");
 		return 1;
 	}
-	int tryb;
-	switch (argv[3][0]){ // działa zarówno dla dłuższych i krótszych wersji
+	int mode;
+	switch (argv[3][0]){
 		case 'i':
-			tryb = 0;
+			mode = 0;
 			break;
 		
 		case 'c':
-			tryb = 1;
+			mode = 1;
 			break;
 			
 		default:
@@ -96,21 +96,21 @@ int main(int argc, char** argv)
 			return 1;
 	}
 	int n = atoi(argv[2]); // char* to int conversion
-	switch (argv[4][0]){ // tak samo jak powyżej
+	switch (argv[4][0]){
 		case 'g':
-			generate(n, tryb, argv[1]);
+			generate(n, mode, argv[1]);
 			break;
 		
 		case 'l':
-			list(n, tryb, argv[1]);
+			list(n, mode, argv[1]);
 			break;
 			
 		case 's':
-			sort(n, tryb, argv[1]);
+			sort(n, mode, argv[1]);
 			break;
 			
 		default:
-			printf("Wybrałeś nieobsługiwaną operację operacja.\n");
+			printf("Unknown operation.\n");
 			return 1;
 	}
 	return 0;
