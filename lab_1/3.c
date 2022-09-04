@@ -21,9 +21,9 @@ int main(void)
 		return 0;
 	}
 	if ( delta < 0){
-		float zespo = sqrt(-delta);
-		printf("x1 = %f + %fi \n",-b/(2*a),zespo/(2*a));
-		printf("x2 = %f - %fi \n",-b/(2*a),zespo/(2*a));
+		float imag = sqrt(-delta);
+		printf("x1 = %f + %fi \n",-b/(2*a),imag/(2*a));
+		printf("x2 = %f - %fi \n",-b/(2*a),imag/(2*a));
 		return 0;
 	}
 }
