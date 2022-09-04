@@ -68,10 +68,10 @@ int main(void)
 	int arr1[8][8];
 	int arr2[8][8];
 	create_2d_array(arr1);
-	printf("\033[0;31mFirst matrix:\033[0m\n");
+	printf("\033[0;31mFirst Matrix:\033[0m\n");
 	print_2d_array(arr1);
 	create_2d_array(arr2);
-	printf("\033[0;31mSecond matrix:\033[0m\n");
+	printf("\033[0;31mSecond Matrix:\033[0m\n");
 	print_2d_array(arr2);
 	printf("\033[0;35mResult of sum_calculator(arr2):\033[0m\n");
 	sum_calculator(arr2);
