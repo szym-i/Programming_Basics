@@ -3,7 +3,8 @@
 #include <string.h>
 
 
-int main(int argc, char* argv[]){
+int main(int argc, char* argv[])
+{
        	FILE* fp = fopen(argv[1], "r");	
 	char b;
 	int i=0;
