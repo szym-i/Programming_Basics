@@ -28,7 +28,6 @@ char** getData(int len)
 		
 		(len)++;
 	}
-	
 	return a;
 }
 int main(void)
