@@ -1,6 +1,6 @@
 #include <stdio.h>
-#include <time.h>
 #include <stdlib.h>
+#include <time.h>
 
 void create_array(int t[], int n) // creating array with random integers 1-10
 {
