@@ -57,7 +57,6 @@ char** getData(int* line_count)
         memcpy(master_array[*line_count], line, length * sizeof(char));
         (*line_count)++;
     }
-
     return master_array;
 }
 
