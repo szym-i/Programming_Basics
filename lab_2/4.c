@@ -1,7 +1,5 @@
 #include <stdio.h>
 
-// lab task
-
 int main(void)
 {
 	int n=0;
