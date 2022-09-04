@@ -49,14 +49,14 @@ char* getHexAscii(char znak)
 	return result;
 }                            
 
-char* decompress(char** tekst, int len){// funkcja przyjmuje char ** oraz jego długość
+char* decompress(char** tekst, int len){ // function takes char ** and it's length
 	char* result;
 	result = malloc(len * max_line_len * sizeof(char));
-	int k=0;// indeks tablicy result
-	for(int i=0; i < len; i++){// przechodzimy po wszystkich wczytanych liniach
-		for(int j=0; j < strlen(tekst[i]); j++){// przechodzimy po charach z danej linijki
+	int k=0; // result index
+	for(int i=0; i < len; i++){ // go through all lines 
+		for(int j=0; j < strlen(tekst[i]); j++){ // go through all chars from each line
 			char c = tekst[i][j];
-			if (( c != '(') && ( c != '%' ) && (c != ')'))// jeśli to zwykły znak po prostu 'przepisujemy' go
+			if (( c != '(') && ( c != '%' ) && (c != ')')) // if not special char
 				result[k++]=c;
 			if (c == '('){
 				int rozmiar=0;
