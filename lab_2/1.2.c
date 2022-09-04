@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <math.h>
 
-void create_array(int t[], int n) // creating array with random integers [-10,10]
+void create_array(int t[], int n) // create array with random integers [-10,10]
 {
 	for (int i=0; i < n; i++){
                 int r = (lrand48() % 21)-10;
@@ -12,7 +12,7 @@ void create_array(int t[], int n) // creating array with random integers [-10,10
 
 }
 
-void print_array(int t[], int n) // printing array
+void print_array(int t[], int n) // print array
 {
 	printf("[");
         for (int i=0; i<n; i++){
