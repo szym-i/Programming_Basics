@@ -4,7 +4,7 @@
  #include <time.h>
  #include <stdbool.h> 
 
-int main()
+int main(void)
 {
     // Przykład ze strony 'https://valgrind.org/docs/manual/quick-start.html'
     // int* x = malloc(10 * sizeof(int));
