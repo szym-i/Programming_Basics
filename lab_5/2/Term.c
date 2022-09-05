@@ -6,7 +6,7 @@
 struct Term{ 
 	int hour;
 	int minute;
-	int duration;// w minutach
+	int duration; // in minutes
 };
 
 typedef struct Term Term;
@@ -22,11 +22,12 @@ Term* Term__create(int hour, int minute, int duration){// przydziela pamięć dl
 	Term__init(term, hour, minute, duration);
 }
 
-void Term__destroy(Term* term){// zwalnia pamięć dla podanego (istniejącego) "obiektu"
+void Term__destroy(Term* term) // free memory for (existing) Term
+{
 	free(term);
 }
 
-char* Term__toString(Term* term){// zwraca napis postaci "godzina:minuta [czas trwania]"
+char* Term__toString(Term* term){ // zwraca napis postaci "godzina:minuta [czas trwania]"
 	char* result = malloc(12*sizeof(char));
 	if( term->minute < 10)
 		snprintf(result,12,"%d:0%d [%d]",term->hour,term->minute,term->duration);

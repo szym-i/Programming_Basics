@@ -32,11 +32,3 @@ Day Day__nextDay(Day day){// która dla SAT zwraca SUN, dla SUN zwraca MON, itd.
 Day Day__prevDay(Day day){// która dla MON zwraca SUN, dla SUN zwraca SAT, itd.
 	return (day + 5 )%7 + 1;
 }
-/*
-int main(){
-	Day day1 = SUN;
-	printf("Day__toString: %s\n",Day__toString(day1));
-	printf("Day__nextDay: %d\n",Day__nextDay(day1));
-	printf("Day__prevDay: %d\n",Day__prevDay(day1));
-	return 0;
-}*/
