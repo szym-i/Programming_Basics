@@ -2,36 +2,39 @@
 #include <stdlib.h>
 #include <limits.h>
 
-struct Stack {
-    int *stack;// stos
-    int current_size;// aktualny rozmiar stosu
-    int max_size;// maksymalny rozmiar stosu
+struct Stack 
+{
+    int *stack;
+    int current_size;
+    int max_size;
 };
 
 typedef struct Stack Stack;
 
-Stack *Stack__create(int size){// Tworzy stos o rozmiarze size i zwraca go. Jeżeli utworzenie stosu nie powiodło się, to program ma zakończyć działanie
+Stack *Stack__create(int size) // create Stack, if something went wrong end program working
+{
     int *stack = malloc(size*sizeof(int));
     if (stack == NULL){
-        fprintf(stderr, "\033[1;33mNie mogę stworzyć stosu o podanym rozmiarze.\n\033[0m");
+        fprintf(stderr, "\033[1;33mI can't create stack of this size.\n\033[0m");
         exit(EXIT_FAILURE);
     }
 
     Stack *Stack = malloc(sizeof(Stack));
 
     Stack->stack = stack;
-    Stack->current_size = 0;// bo stworzony stos jest pusty
+    Stack->current_size = 0;
     Stack->max_size = size;
     printf("Tworzę Stack o wielkości %d\n",size);
     return Stack;
 }
 
-void Stack__destroy(Stack **Stack){// Zwalnia pamięć dla stosu stack, o ile stos istnieje. Jeżeli nie istnieje, to wypisuje stosowny komunikat
+void Stack__destroy(Stack **Stack) // free memory of Stack, if Stack exists
+{
     if ((*Stack) == NULL) {
-        fprintf(stderr, "\033[1;33mStos nie istnieje.\n\033[0m");
+        fprintf(stderr, "\033[1;33mStack does not exist.\n\033[0m");
 	return;
     }
-    printf("\033[1;31mUsuwam stos\033[0m\n");
+    printf("\033[1;31mI destroy Stack\033[0m\n");
     free((*Stack)->stack);
     free(*Stack);
     (*Stack) = NULL;
@@ -51,27 +54,28 @@ void Stack__push(Stack *s, int n){// Umieszcza liczbę number na szczycie stosu 
     s->stack[(s->current_size)++] = n;
 }
 
-int Stack__pop(Stack *s){// Zdejmuje element (liczbę) ze szczytu stosu stack i zwraca go
-    if (s == NULL){// jeśli stos nie isntieje
-        fprintf(stderr, "\033[1;33mNie udało się zdjąć liczby ze stosu - stos nie istnieje.\n\033[0m");
+int Stack__pop(Stack *s){ // pop item from Stack and return it
+    if (s == NULL){ // if Stack does not exist
+        fprintf(stderr, "\033[1;33mCan't pop item from Stack - Stack does not exist.\n\033[0m");
         exit(EXIT_FAILURE);
     }
     if (s->current_size == 0){
-        fprintf(stderr, "\033[1;33mNie udało się zdjąć liczby ze stosu - stos jest pusty.\n\033[0m");
+        fprintf(stderr, "\033[1;33mCan't pop item from Stack - Stack is empty.\n\033[0m");
         return INT_MIN;
     }
     return s->stack[--(s->current_size)];
 }
 
-void Stack__print(Stack *s){// Wypisuje zawartość stosu stack
+void Stack__print(Stack *s)
+{
     if (s == NULL) {
-        fprintf(stderr, "\033[1;33mNie udało się wyświetlić zawartości stosu - stos nie istnieje.\n\033[0m");
+        fprintf(stderr, "\033[1;33mCan't print Stack - Stack does not exist.\n\033[0m");
         //exit(EXIT_FAILURE);
 	return;
     }
     printf("\033[1;36mStack__print():\n");
     if ( s->current_size == 0){
-	printf("Stos istnieje, ale jest pusty\n");
+	printf("Stack is empty\n");
 	return;
     }
     for (int i = 0; i < s->current_size; i++)
