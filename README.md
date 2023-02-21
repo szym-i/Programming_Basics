@@ -9,7 +9,7 @@ lab_2 | lab_3| lab_4 | lab_5 | lab_6 |Total | Final Grade
 
 
 
-Compile codes in Linux Terminal with: \
-**gcc prog.c -o prog** \ 
-**gcc prog.c -lm -o prog** (for those with <math.h> module) \
+Compile codes in Linux Terminal with: \\
+**gcc prog.c -o prog** \\
+**gcc prog.c -lm -o prog** (for those with <math.h> module) \\
 **gcc prog_test.c -lcunit -o prog_test** (for tests with <CUnit.h>)
