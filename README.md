@@ -8,8 +8,7 @@ lab_2 | lab_3| lab_4 | lab_5 | lab_6 |Total | Final Grade
 4+1,5 | 4+1  | 4     | 4+1   | 4+1,8 | 25,3 | 4.5
 
 
-
-Compile codes in Linux Terminal with: \\
-**gcc prog.c -o prog** \\
-**gcc prog.c -lm -o prog** (for those with <math.h> module) \\
+Compile codes in Linux Terminal with: <br>
+**gcc prog.c -o prog** <br>
+**gcc prog.c -lm -o prog** (for those with <math.h> module) <br>
 **gcc prog_test.c -lcunit -o prog_test** (for tests with <CUnit.h>)
